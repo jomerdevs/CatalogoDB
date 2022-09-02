@@ -1,7 +1,7 @@
 USE [Catalogo]
 GO
 
-/****** Object:  Table [dbo].[Category]    Script Date: 23/08/2022 17:32:58 ******/
+/****** Object:  Table [dbo].[Category]    Script Date: 01/09/2022 22:08:24 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -12,6 +12,8 @@ CREATE TABLE [dbo].[Category](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[Name] [varchar](50) NOT NULL,
 	[Description] [varchar](100) NULL,
+	[IsActive] [bit] NULL,
+	[Created] [datetime] NULL,
  CONSTRAINT [PK_Category] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
@@ -21,5 +23,11 @@ CREATE TABLE [dbo].[Category](
 	[Name] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[Category] ADD  DEFAULT ((0)) FOR [IsActive]
+GO
+
+ALTER TABLE [dbo].[Category] ADD  DEFAULT (getdate()) FOR [Created]
 GO
 
